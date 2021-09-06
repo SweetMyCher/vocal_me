@@ -5,20 +5,34 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+  schema_search_path: public
+  database: vocal_me
+  host: 127.0.0.1
+  port: 5432
+  username: vocal_me
+  password: vocal_me_passwword
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  schema_search_path: public
+  database: vocal_me
+  host: 127.0.0.1
+  port: 5432
+  username: vocal_me
+  password: vocal_me_passwword
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  schema_search_path: public
+  database: vocal_me_test
+  host: 127.0.0.1
+  port: 5432
+  username: vocal_me
+  password: vocal_me_passwword
 
 production:
   <<: *default

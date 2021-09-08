@@ -67,6 +67,6 @@ class UserTextsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_text_params
-      params.require(:user_text).permit(:name, :text, :text_id)
+      params.require(:user_text).permit(:name, :custom_text, :text_id)
     end
 end

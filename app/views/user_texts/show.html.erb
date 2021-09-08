@@ -11,4 +11,5 @@
 </p>
 
 <%= link_to 'Edit', edit_user_text_path(@user_text) %> |
+<%= link_to 'Destroy', @user_text, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', user_texts_path %>

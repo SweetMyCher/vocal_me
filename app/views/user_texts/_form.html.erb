@@ -17,10 +17,13 @@
   </div>
 
   <div class="field">
-    <% text =  @text ? @text.text : '' %>
     <% text_id =  @text ? @text.id : nil %>
     <%= form.label :custom_text %>
-    <%= form.text_area :custom_text, size: '50x50', value: text %>
+    <% if @text%>
+      <%= form.text_area :custom_text, size: '50x50', value: @text.text %>
+    <% else %>
+      <%= form.text_area :custom_text, size: '50x50' %>
+    <% end %>
   </div>
 
   <%= form.hidden_field :text_id, value: text_id %>

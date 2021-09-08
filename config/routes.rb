@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :texts
   root "artists#index"
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do

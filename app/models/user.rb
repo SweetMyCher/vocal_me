@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :artist
+  has_many :genre
 
   def is_admin?
     self.admin

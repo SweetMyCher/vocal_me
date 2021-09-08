@@ -1,3 +1,3 @@
 class Artist < ApplicationRecord
-  belongs_to :users
+  belongs_to :user
 end

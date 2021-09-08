@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new edit destroy ]
+  before_action :check_permission, only: %i[ edit destroy ]
 
   # GET /artists or /artists.json
   def index
@@ -24,6 +25,7 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
 
+    @artist.user_id = current_user.id
     respond_to do |format|
       if @artist.save
         format.html { redirect_to @artist, notice: "Artist was successfully created." }
@@ -67,4 +69,10 @@ class ArtistsController < ApplicationController
     def artist_params
       params.require(:artist).permit(:name, :description)
     end
+
+  def check_permission
+    unless current_user.is_admin? || current_user.id = @artist.user_id
+      redirect_to artists_url, alert: "Permissiom denied."
+    end
+  end
 end

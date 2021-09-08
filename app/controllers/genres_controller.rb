@@ -1,6 +1,5 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ new edit destroy ]
   before_action :check_permission, only: %i[ edit destroy ]
 
   # GET /genres or /genres.json
@@ -62,17 +61,11 @@ class GenresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_genre
-      @genre = Genre.find(params[:id])
+      @genre = @exam = Genre.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def genre_params
       params.require(:genre).permit(:name, :description)
     end
-
-  def check_permission
-    unless current_user.is_admin? || current_user.id = @artist.user_id
-      redirect_to artists_url, alert: "Permissiom denied."
-    end
-  end
 end

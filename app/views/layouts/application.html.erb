@@ -13,7 +13,11 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= link_to "Home", root_path %>
+    <%= link_to "Home", root_path %> |
+    <%= link_to "Arists", artists_path %> |
+    <%= link_to "Genres", genres_path %> |
+    <%= link_to "User texts", user_texts_path %> |
+    <%= link_to "Artist texts", texts_path %> |
     <% if current_user %>
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
     <% else %>

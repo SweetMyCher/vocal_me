@@ -1,27 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <h1>User Texts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Original Song Name</th>
-      <th>Artist</th>
-      <th>User Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_texts.each do |user_text| %>
+<% if @user_texts.blank? %>
+  <p> Empty user texts</p>
+<% else %>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to user_text.name, user_text %></td>
-        <td><%= link_to user_text.text.name, user_text.text %></td>
-        <td><%= link_to user_text.text.artist.name, user_text.text.artist %></td>
-        <td><%= "#{user_text.user.first_name.capitalize} #{user_text.user.last_name.capitalize}" %></td>
+        <th>Name</th>
+        <th>Original Song Name</th>
+        <th>Artist</th>
+        <th>User Name</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @user_texts.each do |user_text| %>
+        <tr>
+          <td><%= link_to user_text.name, user_text %></td>
+          <td><%= link_to user_text.text.name, user_text.text %></td>
+          <td><%= link_to user_text.text.artist.name, user_text.text.artist %></td>
+          <td><%= "#{user_text.user.first_name.capitalize} #{user_text.user.last_name.capitalize}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+<% end %>

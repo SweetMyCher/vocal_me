@@ -1,6 +1,5 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ new edit destroy ]
   before_action :check_permission, only: %i[ edit destroy ]
 
   # GET /artists or /artists.json
@@ -62,17 +61,11 @@ class ArtistsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_artist
-      @artist = Artist.find(params[:id])
+      @artist = @exam = Artist.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def artist_params
       params.require(:artist).permit(:name, :description, :genre_id)
     end
-
-  def check_permission
-    unless current_user.is_admin? || current_user.id = @artist.user_id
-      redirect_to artists_url, alert: "Permissiom denied."
-    end
-  end
 end

@@ -1,25 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Texts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Song Name</th>
-      <th>Group</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @texts.each do |text| %>
+<% if @texts.blank? %>
+  <p> Empty texts</p>
+<% else %>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to text.name, text %></td>
-        <td><%= link_to text.artist.name, text.artist %></td>
+        <th>Song Name</th>
+        <th>Group</th>
+        <th>Count of user texts</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @texts.each do |text| %>
+        <tr>
+          <td><%= link_to text.name, text %></td>
+          <td><%= link_to text.artist.name, text.artist %></td>
+          <td><%= link_to text.user_text.size, user_texts_path(text_id: text.id ) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+<% end %>
 
 <%= link_to 'New Text', new_text_path %>

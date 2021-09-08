@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_09_08_150853) do
 
   create_table "user_texts", force: :cascade do |t|
     t.string "name"
-    t.text "text"
+    t.text "custom_text"
     t.bigint "user_id"
     t.bigint "text_id"
     t.datetime "created_at", precision: 6, null: false

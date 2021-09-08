@@ -12,6 +12,7 @@ class UserTextsController < ApplicationController
 
   # GET /user_texts/new
   def new
+    @text = Text.find_by(id: params[:text_id]) #find_by because it get params and record may not exist
     @user_text = UserText.new
   end
 
@@ -23,6 +24,8 @@ class UserTextsController < ApplicationController
   def create
     @user_text = UserText.new(user_text_params)
 
+    @user_text.user_id = current_user.id
+    @user_text.text_id = user_text_params[:text_id]
     respond_to do |format|
       if @user_text.save
         format.html { redirect_to @user_text, notice: "User text was successfully created." }
@@ -64,6 +67,6 @@ class UserTextsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_text_params
-      params.require(:user_text).permit(:name, :text)
+      params.require(:user_text).permit(:name, :text, :text_id)
     end
 end

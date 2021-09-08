@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :artist
   has_many :genre
   has_many :test
+  has_many :user_text
 
   def is_admin?
     self.admin

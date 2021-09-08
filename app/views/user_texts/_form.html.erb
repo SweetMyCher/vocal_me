@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-<!--  <p><%#= @text %>-->
 
   <div class="field">
     <%= form.label :name %>
@@ -18,9 +17,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :text %>
-    <%= form.text_area :text %>
+    <% text =  @text ? @text.text : '' %>
+    <% text_id =  @text ? @text.id : nil %>
+    <%= form.label :custom_text %>
+    <%= form.text_area :custom_text, size: '50x50', value: text %>
   </div>
+
+  <%= form.hidden_field :text_id, value: text_id %>
 
   <div class="actions">
     <%= form.submit %>

@@ -6,9 +6,20 @@
 </p>
 
 <p>
+  <strong>Artist:</strong>
+  <%= link_to @text.artist.name, @text.artist %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @text.artist.genre.name %>
+</p>
+
+<p class="test-song">
   <strong>Text:</strong>
   <%= @text.text %>
 </p>
 
 <%= link_to 'Edit', edit_text_path(@text) %> |
+<%= link_to 'Destroy', @text, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', texts_path %>

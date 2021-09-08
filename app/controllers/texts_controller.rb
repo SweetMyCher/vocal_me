@@ -1,5 +1,7 @@
 class TextsController < ApplicationController
   before_action :set_text, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new edit destroy ]
+  before_action :check_permission, only: %i[ edit destroy ]
 
   # GET /texts or /texts.json
   def index
@@ -65,6 +67,12 @@ class TextsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def text_params
-      params.require(:text).permit(:name, :text)
+      params.require(:text).permit(:name, :text, :artist_id)
     end
+
+  def check_permission
+    unless current_user.is_admin? || current_user.id = @artist.user_id
+      redirect_to artists_url, alert: "Permissiom denied."
+    end
+  end
 end

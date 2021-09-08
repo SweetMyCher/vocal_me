@@ -21,6 +21,11 @@
     <%= form.text_area :text %>
   </div>
 
+  <div class="field">
+    <%= select("text", "artist_id", Artist.all.collect { |p| [p.name, p.id] }) %>
+    <%= link_to 'New Artist', new_artist_path %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

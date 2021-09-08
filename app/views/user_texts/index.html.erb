@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Texts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_texts.each do |user_text| %>
+      <tr>
+        <td><%= user_text.name %></td>
+        <td><%= user_text.text %></td>
+        <td><%= link_to 'Show', user_text %></td>
+        <td><%= link_to 'Edit', edit_user_text_path(user_text) %></td>
+        <td><%= link_to 'Destroy', user_text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Text', new_user_text_path %>

@@ -19,6 +19,7 @@
   <strong>Text:</strong>
   <%= @text.text %>
 </p>
+<p><%= link_to 'New User Text', new_user_text_path(text_id: @text.id)  %></p>
 
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Destroy', @text, method: :delete, data: { confirm: 'Are you sure?' } %> |
